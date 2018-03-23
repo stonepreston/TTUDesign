@@ -1,12 +1,14 @@
 #include "Arduino.h"
 #include "Transmitter.h"
 
+// Create Transmitter object
 Transmitter transmitter  = Transmitter();
+
 int capturedData[3];
 
-const int VERT = A0; // analog
-const int HORIZ = A4; // analog
-const int SEL = 4; // digital
+const int leftStickPin = A0; // analog
+const int rightStickPin = A4; // analog
+const int leftSelectPin = 4; // digital
 
 void setup()
 {
@@ -33,12 +35,12 @@ void captureData() {
   int vertical, horizontal, select;
   
   // read all values from the joystick
-  vertical = analogRead(VERT); // will be 0-1023
-  horizontal = analogRead(HORIZ); // will be 0-1023
-  select = digitalRead(SEL); // will be HIGH (1) if not pressed, and LOW (0) if pressed
+  leftVertical = analogRead(leftStickPin); // will be 0-1023
+  rightVertical = analogRead(rightStickPin); // will be 0-1023
+  select = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed
 
-  capturedData[0] = vertical;
-  capturedData[1] = horizontal;
+  capturedData[0] = leftVertical;
+  capturedData[1] = rightVertical;
   capturedData[3] = select;
 
   transmitter.setData(capturedData);
