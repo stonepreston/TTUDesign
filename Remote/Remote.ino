@@ -17,9 +17,9 @@ void setup()
   
 
   // make the SEL line an input
-  pinMode(SEL,INPUT);
+  pinMode(leftSelectPin,INPUT);
   // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
-  digitalWrite(SEL,HIGH);
+  digitalWrite(leftSelectPin,HIGH);
 }
 
 void loop()
@@ -32,7 +32,7 @@ void loop()
 
 void captureData() {
 
-  int vertical, horizontal, select;
+  int leftVertical, rightVertical, select;
   
   // read all values from the joystick
   leftVertical = analogRead(leftStickPin); // will be 0-1023

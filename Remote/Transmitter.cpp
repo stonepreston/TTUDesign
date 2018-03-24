@@ -21,8 +21,11 @@ void Transmitter::debugData() {
   Serial.println("U");
   Serial.println("S");
   Serial.println("A");
+  Serial.print("Left: ");
   Serial.println(byte(data[0]));
+  Serial.print("Right: ");
   Serial.println(byte(data[1]));
+  Serial.print("Select: ");
   Serial.println(byte(data[2]));
   Serial.println(createCheckSum());
 }
