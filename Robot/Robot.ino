@@ -90,7 +90,7 @@ void processSerial() {
       
       inputBufferTemp = xBee.read();
       
-      if(inputBufferTemp == 0x55) { 
+      if(inputBufferTemp == 0x41) { 
         
         aFound = true; 
         usaFound = true;

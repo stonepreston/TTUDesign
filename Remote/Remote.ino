@@ -19,7 +19,7 @@ void setup()
   // make the SEL line an input
   pinMode(leftSelectPin,INPUT);
   // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
-  digitalWrite(leftSelectPin,HIGH);
+  
 }
 
 void loop()

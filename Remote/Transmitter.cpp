@@ -27,6 +27,7 @@ void Transmitter::debugData() {
   Serial.println(byte(data[1]));
   Serial.print("Select: ");
   Serial.println(byte(data[2]));
+  Serial.print("CheckSum: ");
   Serial.println(createCheckSum());
 }
 
