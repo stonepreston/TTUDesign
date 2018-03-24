@@ -1,9 +1,8 @@
 
 #include <SoftwareSerial.h>
 
-//// XBee's DOUT (TX) is connected to pin 2 (Arduino's Software RX)
-//// XBee's DIN (RX) is connected to pin 3 (Arduino's Software TX)
-SoftwareSerial xBee(2, 3); // RX, TX
+// rx = 13, tx = 3
+SoftwareSerial xBee(13, 3); // RX, TX
 
 // Network related variables
 // Flags
