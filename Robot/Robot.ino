@@ -39,6 +39,12 @@
 #include <SoftwareSerial.h>
 #include <Adafruit_MotorShield.h>
 
+// Create the motor shield object with the default I2C address
+Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
+
+// Select which 'port' M1, M2, M3 or M4. In this case, M1
+Adafruit_DCMotor *motor1 = AFMS.getMotor(1);
+Adafruit_DCMotor *motor2 = AFMS.getMotor(2);
 
 // rx = 13, tx = 3
 SoftwareSerial xBee(13, 3); // RX, TX
@@ -67,14 +73,35 @@ void setup() {
 
   xBee.begin(9600);
   Serial.begin(9600);
+
+  AFMS.begin();  // create with the default frequency 1.6KHz
+
+  // Set the speed to start, from 0 (off) to 255 (max speed)
+  motor1->setSpeed(150);
+  motor1->run(FORWARD);
+  // turn on motor
+  motor1->run(RELEASE);
+
+  // Set the speed to start, from 0 (off) to 255 (max speed)
+  motor2->setSpeed(150);
+  motor2->run(FORWARD);
+  // turn on motor
+  motor2->run(RELEASE);
   
 }
 
 void loop() {
 
   currentTime = millis();
-  processSerial();  
- timeout();  
+  processSerial(); 
+  int leftSpeed = int(leftByte); 
+  int rightSpeed = int(rightByte);
+
+  motor1->setSpeed(leftSpeed); 
+  motor1->run(FORWARD);
+  motor2->setSpeed(rightSpeed); 
+  motor2->run(FORWARD);
+  timeout();  
   delay(10);
   
 }
@@ -194,6 +221,8 @@ void processSerial() {
 void timeout() {
   if (currentTime > (timeOfLastGoodPacket + 1000)) {
     // STop motors here
+    motor1->run(RELEASE);
+    motor2->run(RELEASE);
     Serial.println("Timeout");
     timeOfLastGoodPacket = currentTime;
   }
