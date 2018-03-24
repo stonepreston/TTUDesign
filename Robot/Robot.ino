@@ -43,8 +43,12 @@
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
 
 // Select which 'port' M1, M2, M3 or M4. In this case, M1
-Adafruit_DCMotor *motor1 = AFMS.getMotor(1);
-Adafruit_DCMotor *motor2 = AFMS.getMotor(2);
+Adafruit_DCMotor *leftMotor = AFMS.getMotor(1);
+Adafruit_DCMotor *rightMotor = AFMS.getMotor(2);
+
+int leftNeutral = 244;
+int rightNeutral = 245;
+int neutralBump = 3;
 
 // rx = 13, tx = 3
 SoftwareSerial xBee(13, 3); // RX, TX
@@ -77,16 +81,16 @@ void setup() {
   AFMS.begin();  // create with the default frequency 1.6KHz
 
   // Set the speed to start, from 0 (off) to 255 (max speed)
-  motor1->setSpeed(150);
-  motor1->run(FORWARD);
+  leftMotor->setSpeed(150);
+  leftMotor->run(FORWARD);
   // turn on motor
-  motor1->run(RELEASE);
+  leftMotor->run(RELEASE);
 
   // Set the speed to start, from 0 (off) to 255 (max speed)
-  motor2->setSpeed(150);
-  motor2->run(FORWARD);
+  rightMotor->setSpeed(150);
+  rightMotor->run(FORWARD);
   // turn on motor
-  motor2->run(RELEASE);
+  rightMotor->run(RELEASE);
   
 }
 
@@ -94,13 +98,48 @@ void loop() {
 
   currentTime = millis();
   processSerial(); 
+
+  
+  // get speeds
   int leftSpeed = int(leftByte); 
   int rightSpeed = int(rightByte);
 
-  motor1->setSpeed(leftSpeed); 
-  motor1->run(FORWARD);
-  motor2->setSpeed(rightSpeed); 
-  motor2->run(FORWARD);
+  // Left Motor
+  if (leftSpeed <= (leftNeutral + neutralBump) && leftSpeed >= (leftNeutral - neutralBump)) {
+
+    leftMotor->run(RELEASE);
+    
+  } else if(leftSpeed > leftNeutral) {
+
+    leftMotor->setSpeed(255); 
+    leftMotor->run(FORWARD);
+    
+  } else {
+
+    // Reverse
+    leftMotor->setSpeed(255); 
+    leftMotor->run(BACKWARD);
+    
+  }
+
+  // Right Motor
+  if (rightSpeed <= (rightNeutral + neutralBump) && rightSpeed >= (rightNeutral - neutralBump)) {
+
+    rightMotor->run(RELEASE);
+    
+  } else if(rightSpeed > rightNeutral) {
+
+    rightMotor->setSpeed(255); 
+    rightMotor->run(FORWARD);
+    
+  } else {
+
+    // Reverse
+    rightMotor->setSpeed(255); 
+    rightMotor->run(BACKWARD);
+    
+  }
+    
   timeout();  
   delay(10);
   
@@ -221,8 +260,8 @@ void processSerial() {
 void timeout() {
   if (currentTime > (timeOfLastGoodPacket + 1000)) {
     // STop motors here
-    motor1->run(RELEASE);
-    motor2->run(RELEASE);
+    leftMotor->run(RELEASE);
+    rightMotor->run(RELEASE);
     Serial.println("Timeout");
     timeOfLastGoodPacket = currentTime;
   }
