@@ -8,7 +8,7 @@ int capturedData[3];
 
 const int leftStickPin = A0; // analog
 const int rightStickPin = A4; // analog
-const int leftSelectPin = 4; // digital
+const int leftSelectPin = 11; // digital
 
 void setup()
 {
@@ -19,7 +19,7 @@ void setup()
   // make the SEL line an input
   pinMode(leftSelectPin,INPUT);
   // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
-  
+  digitalWrite(leftSelectPin, HIGH);
 }
 
 void loop()
@@ -41,7 +41,7 @@ void captureData() {
 
   capturedData[0] = leftVertical;
   capturedData[1] = rightVertical;
-  capturedData[3] = select;
+  capturedData[2] = select;
 
   transmitter.setData(capturedData);
   
