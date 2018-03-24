@@ -1,3 +1,4 @@
+
 //#include "Arduino.h"
 //#include "Receiver.h"
 //
@@ -36,6 +37,8 @@
 //}
 
 #include <SoftwareSerial.h>
+#include <Adafruit_MotorShield.h>
+
 
 // rx = 13, tx = 3
 SoftwareSerial xBee(13, 3); // RX, TX
