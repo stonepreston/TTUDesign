@@ -17,6 +17,7 @@ class Transmitter
     void debugData();
     byte createCheckSum();
     const int dataSize = 3;
+    
 };
 
 #endif

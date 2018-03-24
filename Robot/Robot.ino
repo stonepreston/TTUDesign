@@ -1,3 +1,39 @@
+//#include "Arduino.h"
+//#include "Receiver.h"
+//
+//// Create Receiver object
+//Receiver receiver  = Receiver();
+//
+//void setup()
+//{
+//
+//  Serial.begin(9600);
+//  
+//
+//}
+//
+//void loop() {
+//
+//  // Set current time on receiver
+//  receiver.setCurrentTime(millis());
+//
+//  // Process data
+//  receiver.processData(); 
+//
+//  //timeout();
+//
+//  
+//}
+//
+//void timeout() {
+//
+//  // See if we have 1 second between data
+//  if (receiver.getCurrentTime() > (receiver.getTimeOfLastGoodPacket() + 1000)) {
+//    // STop motors here
+//    Serial.println("Timeout");
+//    receiver.setTimeOfLastGoodPacket(receiver.getCurrentTime());
+//  }
+//}
 
 #include <SoftwareSerial.h>
 
@@ -35,7 +71,7 @@ void loop() {
 
   currentTime = millis();
   processSerial();  
-  timeout();  
+ timeout();  
   delay(10);
   
 }
@@ -106,8 +142,9 @@ void processSerial() {
     }
 
     
-     if (usaFound && (xBee.available()  > 3 )) {
+     if (usaFound && (xBee.available() )) {
 
+        Serial.println("Found Packet");
         // The correct flags were found
         // store bytes into the appropriate variables
         leftByte = xBee.read();
@@ -134,7 +171,7 @@ void processSerial() {
         // We found a good packet, so set current time
         timeOfLastGoodPacket = currentTime;
 
-        Serial.println("Found Packet:");
+        
 
         // Output data to serial
         Serial.print("Left Byte: ");
@@ -170,87 +207,4 @@ void timeout() {
 
 
 
-//#include <AFMotor.h>
-//
-//// We'll use SoftwareSerial to communicate with the XBee:
-//#include <SoftwareSerial.h>
-//// XBee's DOUT (TX) is connected to pin 2 (Arduino's Software RX)
-//// XBee's DIN (RX) is connected to pin 3 (Arduino's Software TX)
-//SoftwareSerial XBee(2, 3); // RX, TX
-//
-//AF_DCMotor motor(1,MOTOR12_8KHZ);
-//
-//void setup()
-//{
-//  // Set up both ports at 9600 baud. This value is most important
-//  // for the XBee. Make sure the baud rate matches the config
-//  // setting of your XBee.
-//  XBee.begin(9600);
-//  Serial.begin(9600);
-//
-//  
-//  // turn on motor #4
-//  motor.setSpeed(255);
-//  motor.run(RELEASE);
-//  
-//}
-//
-//void loop()
-//{
-//  if (Serial.available())
-//  { // If data comes in from serial monitor
-//    XBee.write(Serial.read());
-//  }
-//  if (XBee.available())
-//  { // If data comes in from XBee
-//
-//    int xbeeData = XBee.parseInt();
-//    if (xbeeData > 1023) {
-//      xbeeData = 1023;
-//    }
-//
-//    if (xbeeData < 0) {
-//      xbeeData = 0;
-//    }
-//
-//    int speed = map(xbeeData, 0, 1023, 0, 255);
-//    Serial.print("speed: ");
-//    Serial.println(speed);
-//
-//    // Stop the motor if the stick is neutral
-//    if (speed <= 127 && speed >= 122) {
-//
-//      motor.run(RELEASE); 
-//        
-//    } else {
-//
-//     
-//      if (speed > 127) {
-//        
-//        motor.setSpeed(speed);
-//        Serial.print("forward speed: ");
-//        Serial.println(speed);
-//        motor.run(FORWARD);  
-//        
-//      }
-//
-//      if (speed < 122) {
-//
-//        // remap for reverse speed
-//        int reverseSpeed = map(speed, 0, 255, 255, 0);
-//        Serial.println("reverse speed: ");
-//        Serial.print(reverseSpeed);
-//        motor.setSpeed(reverseSpeed);
-//        motor.run(BACKWARD);
-//
-//      }
-//       
-//      
-//    }
-//       
-//    
-//  }
-//
-//  
-//}
 

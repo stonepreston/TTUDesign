@@ -46,7 +46,7 @@ void Transmitter::transmitData() {
   debugData();
   
   // Delay needed for consistent communication
-  delay(200);
+  delay(20);
 }
 
 void Transmitter::setData(int capturedData[]) {
