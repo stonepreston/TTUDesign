@@ -27,6 +27,8 @@ void Transmitter::debugData() {
   Serial.println(byte(data[1]));
   Serial.print("Select: ");
   Serial.println(byte(data[2]));
+  Serial.print("Calibrate: ");
+  Serial.println(byte(data[3]));
   Serial.print("CheckSum: ");
   Serial.println(createCheckSum());
 }
@@ -40,6 +42,7 @@ void Transmitter::transmitData() {
   xBee.write(byte(data[0]));
   xBee.write(byte(data[1]));
   xBee.write(byte(data[2]));
+  xBee.write(byte(data[3]));
   xBee.write(createCheckSum());
 
   // Print debug data to console

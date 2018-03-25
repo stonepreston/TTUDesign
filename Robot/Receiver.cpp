@@ -90,6 +90,7 @@ void Receiver::processData() {
         processedData[0] = xBee.read();
         processedData[1] = xBee.read();
         processedData[2] = xBee.read();
+        processedData[3] = xBee.read();
         checkSumByte = xBee.read();
 
         // Clear flags

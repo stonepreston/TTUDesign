@@ -64,6 +64,7 @@ bool aFound = false;
 byte leftByte;
 byte rightByte;
 byte selectByte;
+byte calibrateByte;
 byte checkSumByte;
 
 byte badTx;
@@ -99,26 +100,38 @@ void loop() {
   currentTime = millis();
   processSerial(); 
 
-  
   // get speeds
   int leftSpeed = int(leftByte); 
   int rightSpeed = int(rightByte);
+
+  // Check for calibration
+  int calibrate = int(calibrateByte);
+
+  if (calibrateByte == 1) {
+
+    // reset neutral positions
+    leftNeutral = leftSpeed;
+    rightNeutral = rightSpeed;
+  }
 
   // Left Motor
   if (leftSpeed <= (leftNeutral + neutralBump) && leftSpeed >= (leftNeutral - neutralBump)) {
 
     leftMotor->run(RELEASE);
     
-  } else if(leftSpeed > leftNeutral) {
-
-    leftMotor->setSpeed(255); 
-    leftMotor->run(FORWARD);
-    
-  } else {
+  } else if(leftSpeed < leftNeutral + neutralBump) {
 
     // Reverse
     leftMotor->setSpeed(255); 
     leftMotor->run(BACKWARD);
+    
+    
+    
+  } else {
+
+    // Forward
+    leftMotor->setSpeed(255); 
+    leftMotor->run(FORWARD);
     
   }
 
@@ -127,16 +140,19 @@ void loop() {
 
     rightMotor->run(RELEASE);
     
-  } else if(rightSpeed > rightNeutral) {
-
-    rightMotor->setSpeed(255); 
-    rightMotor->run(FORWARD);
-    
-  } else {
+  } else if(rightSpeed <  rightNeutral + neutralBump) {
 
     // Reverse
     rightMotor->setSpeed(255); 
     rightMotor->run(BACKWARD);
+
+    
+    
+  } else {
+
+    // Forward
+    rightMotor->setSpeed(255); 
+    rightMotor->run(FORWARD);
     
   }
     
@@ -219,6 +235,7 @@ void processSerial() {
         leftByte = xBee.read();
         rightByte = xBee.read();
         selectByte = xBee.read();
+        calibrateByte = xBee.read();
         checkSumByte = xBee.read();
 
         // Clear flags
@@ -249,6 +266,8 @@ void processSerial() {
         Serial.println(rightByte);
         Serial.print("Select Byte: ");
         Serial.println(selectByte);
+        Serial.print("Calibrate Byte: ");
+        Serial.println(calibrateByte);
         
      }
     

@@ -13,10 +13,10 @@ class Transmitter
     
   private:
     SoftwareSerial xBee;
-    int data[3] = {0, 0, 0};
+    int data[4] = {0, 0, 0, 0};
     void debugData();
     byte createCheckSum();
-    const int dataSize = 3;
+    const int dataSize = 4;
     
 };
 
