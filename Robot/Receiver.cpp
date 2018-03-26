@@ -13,6 +13,8 @@ Receiver::Receiver() :  xBee(13,3) {
 
 void Receiver::processData() {
 
+  // TODO: Move this begin into constructor and see if that helps receiving rate
+  // TODO: Use individual member variables instead of array. Array accessing might be causing the slow down.
   xBee.begin(9600);
   unsigned char inputBufferTemp;
   byte checkSumTest;
