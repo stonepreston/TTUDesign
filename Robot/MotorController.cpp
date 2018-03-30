@@ -7,6 +7,9 @@ MotorController::MotorController() :  AFMS() {
 
   // Serial monitor is already started in Robot setup, no need to begin serial here
 
+  // create with the default frequency 1.6KHz
+  AFMS.begin();  
+
   // Initialize motors
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
@@ -15,6 +18,50 @@ MotorController::MotorController() :  AFMS() {
 }
 
 void MotorController::drive(int leftSpeed, int rightSpeed) {
+
+  // Left Motor
+  if (leftSpeed <= (leftNeutral + neutralBump) && leftSpeed >= (leftNeutral - neutralBump)) {
+
+    // Left stick is neutral
+    leftMotor->run(RELEASE);
+    
+  } else if(leftSpeed < leftNeutral + neutralBump) {
+
+    // Reverse
+    leftMotor->setSpeed(255); 
+    leftMotor->run(BACKWARD);
+    
+    
+    
+  } else {
+
+    // Forward
+    leftMotor->setSpeed(255); 
+    leftMotor->run(FORWARD);
+    
+  }
+
+  // Right Motor
+  if (rightSpeed <= (rightNeutral + neutralBump) && rightSpeed >= (rightNeutral - neutralBump)) {
+
+    // Right stick is neutral
+    rightMotor->run(RELEASE);
+    
+  } else if(rightSpeed <  rightNeutral + neutralBump) {
+
+    // Reverse
+    rightMotor->setSpeed(255); 
+    rightMotor->run(BACKWARD);
+
+    
+    
+  } else {
+
+    // Forward
+    rightMotor->setSpeed(255); 
+    rightMotor->run(FORWARD);
+    
+  }
   
 }
 
@@ -26,6 +73,8 @@ void MotorController::shoot() {
 
 void MotorController::stopMotors() {
 
+  rightMotor->run(RELEASE);
+  leftMotor->run(RELEASE);
   
 }
 
