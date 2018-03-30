@@ -32,9 +32,13 @@ void MotorController::stopMotors() {
 
 void MotorController::calibrate() {
 
-  // reset neutral positions
-  leftNeutral = leftSpeed;
-  rightNeutral = rightSpeed;
+  if (calibration == 1) {
+    
+    // reset neutral positions
+    leftNeutral = leftSpeed;
+    rightNeutral = rightSpeed;
+    
+  }
 
 }
 
