@@ -6,23 +6,21 @@
 // Constructor
 Receiver::Receiver() :  xBee(13,3) {
 
-  Serial.begin(9600);
+  // Serial monitor is already started in main program, no need to begin serial here
+  xBee.begin(9600);
   
   
 }
 
 void Receiver::processData() {
 
-  // TODO: Move this begin into constructor and see if that helps receiving rate
-  // TODO: Use individual member variables instead of array. Array accessing might be causing the slow down.
-  xBee.begin(9600);
+  
   unsigned char inputBufferTemp;
   byte checkSumTest;
 
-  
-
   if (xBee.available() > 0 ) {
-  
+
+    Serial.println("Xbee Available");
 
     if (!uFound) {
       
@@ -83,10 +81,9 @@ void Receiver::processData() {
     }
 
     
-     if (usaFound && (xBee.available())) {
+     if (usaFound && (xBee.available() )) {
 
-        Serial.println("Found Packet:");
-
+        Serial.println("Found Packet");
         // The correct flags were found
         // store bytes into the appropriate variables
         processedData[0] = xBee.read();
@@ -100,7 +97,6 @@ void Receiver::processData() {
         uFound = false; 
         sFound = false; 
         aFound = false;
-        
 
         // Calculate our checksum
         checkSumTest = processedData[0] + processedData[1] + processedData[2];
@@ -108,12 +104,10 @@ void Receiver::processData() {
         // Compare our calculated checksum to the expected
         if (checkSumTest != checkSumByte) {  
 
-          Serial.println("Checksum failed");
+          Serial.println("CheckSum Failed!");
           return; 
           
         }
-
-       
 
         // We found a good packet, so set current time
         timeOfLastGoodPacket = currentTime;
@@ -121,16 +115,25 @@ void Receiver::processData() {
         
 
         // Output data to serial
-        Serial.print("Left Byte: ");
-        Serial.println(processedData[0]);
-        Serial.print("Right Byte: ");
-        Serial.println(processedData[1]);
-        Serial.print("Select Byte: ");
-        Serial.println(processedData[2]);
+        debugData();
         
      }
     
   }
+  
+}
+
+void Receiver::debugData() {
+  
+  // Output data to serial
+  Serial.print("Left Byte: ");
+  Serial.println(processedData[0]);
+  Serial.print("Right Byte: ");
+  Serial.println(processedData[1]);
+  Serial.print("Select Byte: ");
+  Serial.println(processedData[2]);
+  Serial.print("Calibrate Byte: ");
+  Serial.println(processedData[3]);
   
 }
 

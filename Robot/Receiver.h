@@ -32,7 +32,7 @@ class Receiver
     bool aFound = false;  
 
     // Used for timeouts
-    unsigned long currentTime;
+    unsigned long currentTime = 0;
     unsigned long timeOfLastGoodPacket = 0;
     
     void debugData();

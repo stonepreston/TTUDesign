@@ -21,7 +21,7 @@ void loop() {
   // Process data
   receiver.processData(); 
 
-  //timeout();
+  timeout();
 
   
 }
