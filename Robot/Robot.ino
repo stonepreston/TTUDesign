@@ -21,6 +21,7 @@ void loop() {
   // Process data
   receiver.processData(); 
 
+  // Check for timeout
   timeout();
 
   
