@@ -17,7 +17,9 @@ class MotorController
     
   private:
   
-    Adafruit_MotorShield AFMS
+    Adafruit_MotorShield AFMS;
+    Adafruit_DCMotor *leftMotor;
+    Adafruit_DCMotor *rightMotor;
 
     // Neutral stick positioning
     int leftNeutral = 244; // First guess without calibration
