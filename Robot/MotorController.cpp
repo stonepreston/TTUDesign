@@ -38,4 +38,30 @@ void MotorController::calibrate() {
 
 }
 
+// Setters
+void MotorController::setLeftSpeed(byte leftSpeed) {
+
+  this->leftSpeed = int(leftSpeed);
+  
+}
+
+void MotorController::setRightSpeed(byte rightSpeed) {
+
+  this->rightSpeed = int(rightSpeed);
+  
+}
+
+void MotorController::setSelect(byte select) {
+
+  this->select = int(select);
+  
+}
+
+void MotorController::setCalibration(byte calibration) {
+
+  this->calibration = int(calibration);
+  
+}
+
+
 

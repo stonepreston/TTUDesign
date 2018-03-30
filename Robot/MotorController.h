@@ -40,6 +40,13 @@ class MotorController
     // 1 = off, 0 = on (internal pull up resistor)
     int select = 1;
 
+    // Setters
+    // Receiver data is in bytes
+    void setLeftSpeed(byte leftSpeed);
+    void setRightSpeed(byte rightSpeed);
+    void setSelect(byte select);
+    void setCalibration(byte calibration);
+
 
     
     
