@@ -12,6 +12,7 @@ class Receiver
     byte getLeftSpeed();
     byte getRightSpeed();
     byte getSelect();
+    byte getCalibration();
     void setCurrentTime(unsigned long timeInMillis);
     void setTimeOfLastGoodPacket(unsigned long timeInMillis);
     unsigned long getTimeOfLastGoodPacket();

@@ -156,6 +156,12 @@ byte Receiver::getSelect() {
   
 }
 
+byte Receiver::getCalibration() {
+
+  return processedData[3];
+  
+}
+
 void Receiver::setCurrentTime(unsigned long timeInMillis) {
 
   currentTime = timeInMillis;
