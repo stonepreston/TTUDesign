@@ -1,6 +1,7 @@
 
 #include "Arduino.h"
 #include "Receiver.h"
+#include "MotorController.h"
 
 // Create Receiver object
 Receiver receiver  = Receiver();

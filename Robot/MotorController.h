@@ -34,6 +34,7 @@ class MotorController
     // 0 = off, 1 = on (pull down resistor)
     int calibrate = 0;
 
+    // Select (shoot button)
     // 1 = off, 0 = on (internal pull up resistor)
     int select = 1;
     

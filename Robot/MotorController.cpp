@@ -1,11 +1,11 @@
 #include "Arduino.h"
 #include <Adafruit_MotorShield.h>
-#include "MotorControler.h"
+#include "MotorController.h"
 
 // Constructor
 MotorController::MotorController() :  AFMS() {
 
-  // Serial monitor is already started in main program, no need to begin serial here
+  // Serial monitor is already started in Robot setup, no need to begin serial here
 
   // Initialize motors
   leftMotor = AFMS.getMotor(1);
@@ -14,4 +14,13 @@ MotorController::MotorController() :  AFMS() {
   
 }
 
+void MotorController::drive(int leftSpeed, int rightSpeed) {
+  
+}
+
+
+void MotorController::shoot() {
+
+  
+}
 
