@@ -12,6 +12,7 @@ class MotorController
     MotorController();
 
     void drive(int leftSpeed, int rightSpeed);
+    void stopMotors();
     void shoot();
     
     

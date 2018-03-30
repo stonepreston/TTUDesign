@@ -24,3 +24,9 @@ void MotorController::shoot() {
   
 }
 
+void MotorController::stopMotors() {
+
+  
+}
+
+
