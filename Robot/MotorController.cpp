@@ -30,3 +30,12 @@ void MotorController::stopMotors() {
 }
 
 
+void MotorController::calibrate() {
+
+  // reset neutral positions
+  leftNeutral = leftSpeed;
+  rightNeutral = rightSpeed;
+
+}
+
+
