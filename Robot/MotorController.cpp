@@ -3,21 +3,26 @@
 #include "MotorController.h"
 
 // Constructor
-MotorController::MotorController() :  AFMS() {
+MotorController::MotorController() : AFMS() {
 
   // Serial monitor is already started in Robot setup, no need to begin serial here
 
-  // create with the default frequency 1.6KHz
-  AFMS.begin();  
-
-  // Initialize motors
-  leftMotor = AFMS.getMotor(1);
-  rightMotor = AFMS.getMotor(2);
+  
+  
   
   
 }
 
-void MotorController::drive(int leftSpeed, int rightSpeed) {
+void MotorController::initializeMotors() {
+
+  // Initialize motors
+  // Note: For some reason it didnt like AFMS.begin() being in the constructor, kinda strange
+  AFMS.begin();
+  leftMotor = AFMS.getMotor(1);
+  rightMotor = AFMS.getMotor(2);
+}
+
+void MotorController::drive() {
 
   // Left Motor
   if (leftSpeed <= (leftNeutral + neutralBump) && leftSpeed >= (leftNeutral - neutralBump)) {
@@ -41,18 +46,18 @@ void MotorController::drive(int leftSpeed, int rightSpeed) {
     
   }
 
-  // Right Motor
+  // Right
   if (rightSpeed <= (rightNeutral + neutralBump) && rightSpeed >= (rightNeutral - neutralBump)) {
 
     // Right stick is neutral
     rightMotor->run(RELEASE);
     
-  } else if(rightSpeed <  rightNeutral + neutralBump) {
+  } else if(rightSpeed < rightNeutral + neutralBump) {
 
     // Reverse
     rightMotor->setSpeed(255); 
     rightMotor->run(BACKWARD);
-
+    
     
     
   } else {
@@ -62,6 +67,7 @@ void MotorController::drive(int leftSpeed, int rightSpeed) {
     rightMotor->run(FORWARD);
     
   }
+
   
 }
 

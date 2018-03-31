@@ -8,19 +8,17 @@ Receiver::Receiver() :  xBee(13,3) {
 
   // Serial monitor is already started in main program, no need to begin serial here
   xBee.begin(9600);
+
   
   
 }
 
 void Receiver::processData() {
 
-  
   unsigned char inputBufferTemp;
   byte checkSumTest;
 
   if (xBee.available() > 0 ) {
-
-    Serial.println("Xbee Available");
 
     if (!uFound) {
       
@@ -83,23 +81,17 @@ void Receiver::processData() {
     
      if (usaFound && (xBee.available() )) {
 
-        Serial.println("Found Packet");
+        
         // The correct flags were found
-        // store bytes into the appropriate variables
-        processedData[0] = xBee.read();
-        processedData[1] = xBee.read();
-        processedData[2] = xBee.read();
-        processedData[3] = xBee.read();
+        // store bytes into temp variables to calculate check sum
+        byte tempLeft = xBee.read();
+        byte tempRight = xBee.read();
+        byte tempSelect = xBee.read();
+        byte tempCalibrate = xBee.read();
         checkSumByte = xBee.read();
 
-        // Clear flags
-        usaFound = false;
-        uFound = false; 
-        sFound = false; 
-        aFound = false;
-
         // Calculate our checksum
-        checkSumTest = processedData[0] + processedData[1] + processedData[2];
+        checkSumTest = tempLeft + tempRight + tempSelect;
 
         // Compare our calculated checksum to the expected
         if (checkSumTest != checkSumByte) {  
@@ -108,6 +100,19 @@ void Receiver::processData() {
           return; 
           
         }
+
+        processedData[0] = tempLeft;
+        processedData[1] = tempRight;
+        processedData[2] = tempSelect;
+        processedData[3] = tempCalibrate;
+ 
+
+        // Clear flags
+        usaFound = false;
+        uFound = false; 
+        sFound = false; 
+        aFound = false;
+
 
         // We found a good packet, so set current time
         timeOfLastGoodPacket = currentTime;
