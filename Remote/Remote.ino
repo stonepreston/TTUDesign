@@ -41,8 +41,8 @@ void captureData() {
   // read all values from the joystick
   leftVertical = analogRead(leftStickPin); // will be 0-1023
   rightVertical = analogRead(rightStickPin); // will be 0-1023
-  select = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed
-  calibrate = digitalRead(calibrateButtonPin);
+  select = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
+  calibrate = digitalRead(calibrateButtonPin); // will be HIGH (1) if pressed, and LOW (0) if  not pressed (pull-down)
 
   capturedData[0] = leftVertical;
   capturedData[1] = rightVertical;
