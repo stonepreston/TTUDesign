@@ -4,7 +4,11 @@
 
 Transmitter::Transmitter() :  xBee(2,3) {
 
-  Serial.begin(9600);
+  // Serial.begin is called in Remote setup, not needed here
+  // Serial.begin(9600);
+
+  // Start xbee here (might need to be moved to an initialize method to be called in Remote setup, not sure yet)
+  xBee.begin();
   
 }
 
@@ -35,7 +39,8 @@ void Transmitter::debugData() {
 
 void Transmitter::transmitData() {
 
-  xBee.begin(9600);
+  // Moving begin to constructor
+  // xBee.begin(9600);
   xBee.write("U");
   xBee.write("S");
   xBee.write("A");
