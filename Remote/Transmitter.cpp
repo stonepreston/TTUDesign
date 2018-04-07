@@ -15,7 +15,7 @@ Transmitter::Transmitter() :  xBee(2,3) {
 byte Transmitter::createCheckSum() {
 
   // calculate checksum based on data
-  return byte(data[0] + data[1] + data[2]);
+  return byte(data[0] + data[1] + data[2] + data[3]);
   
 }
 

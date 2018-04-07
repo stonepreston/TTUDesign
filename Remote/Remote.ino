@@ -4,7 +4,7 @@
 // Create Transmitter object
 Transmitter transmitter  = Transmitter();
 
-int capturedData[3];
+int capturedData[4];
 
 const int leftStickPin = A0; // analog
 const int rightStickPin = A4; // analog

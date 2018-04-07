@@ -42,7 +42,7 @@ void loop() {
   // Check for timeout
   timeout();
 
-  delay(70);
+  //delay(70);
 
 
 }
