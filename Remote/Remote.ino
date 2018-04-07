@@ -16,7 +16,6 @@ void setup()
 
   Serial.begin(9600);
   
-
   // make the SEL line an input
   pinMode(leftSelectPin,INPUT);
   // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
