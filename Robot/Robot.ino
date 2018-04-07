@@ -42,8 +42,6 @@ void loop() {
   // Check for timeout
   timeout();
 
-  // This affects performance, play around with it more
-  // also check checksum stuff
   delay(70);
 
 
