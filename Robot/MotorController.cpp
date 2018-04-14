@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include <Adafruit_MotorShield.h>
 #include "MotorController.h"
+#include <Servo.h>
 
 // Constructor
 MotorController::MotorController() : AFMS() {
