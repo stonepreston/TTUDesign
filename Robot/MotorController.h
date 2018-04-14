@@ -33,7 +33,8 @@ class MotorController
     
   private:
   
-    
+    // Servo
+    Servo shootingServo;  
 
     // Neutral stick positioning
     int leftNeutral = 243; // First guess without calibration

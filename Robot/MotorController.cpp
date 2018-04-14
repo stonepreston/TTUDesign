@@ -16,6 +16,7 @@ void MotorController::initializeMotors() {
   AFMS.begin();
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
+  shootingServo.attach(32);
 }
 
 void MotorController::drive() {
@@ -70,7 +71,16 @@ void MotorController::drive() {
 
 void MotorController::shoot() {
 
+  if (select == 0) {
   
+    Serial.println("shooting");
+    
+    shootingServo.write(120);
+    delay(50);
+    shootingServo.write(0);
+    
+    
+  }
 }
 
 void MotorController::stopMotors() {
