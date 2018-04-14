@@ -44,7 +44,7 @@ void Receiver::processData() {
       processedData[1] = xBee.read();
       processedData[2] = xBee.read();
       processedData[3] = xBee.read();
-      checkSumByte = xBee.read();
+      checkSum = xBee.read();
       
       // Clear flags
       usaFound = false;
@@ -56,7 +56,7 @@ void Receiver::processData() {
       chksumTest = processedData[0] + processedData[1] + processedData[2] + processedData[3];
       
       // Compare our calculated checksum to the expected
-      if (chksumTest != checkSumByte) {  
+      if (chksumTest != checkSum) {  
 
         Serial.println("Checksum failed!");
         return; 
@@ -75,40 +75,40 @@ void Receiver::processData() {
 void Receiver::debugData() {
   
   // Output data to serial
-  Serial.print("Left Byte: ");
+  Serial.print("Left: ");
   Serial.println(processedData[0]);
-  Serial.print("Right Byte: ");
+  Serial.print("Right: ");
   Serial.println(processedData[1]);
-  Serial.print("Select Byte: ");
+  Serial.print("Select: ");
   Serial.println(processedData[2]);
-  Serial.print("Calibrate Byte: ");
+  Serial.print("Calibrate: ");
   Serial.println(processedData[3]);
-  Serial.print("CheckSumByte: ");
-  Serial.println(checkSumByte);
+  Serial.print("CheckSum: ");
+  Serial.println(checkSum);
 
   
 }
 
-byte Receiver::getLeftSpeed() {
+int Receiver::getLeftSpeed() {
 
   return processedData[0];
   
 }
 
-byte Receiver::getRightSpeed() {
+int Receiver::getRightSpeed() {
 
   return processedData[1];
 
   
 }
 
-byte Receiver::getSelect() {
+int Receiver::getSelect() {
 
   return processedData[2];
   
 }
 
-byte Receiver::getCalibration() {
+int Receiver::getCalibration() {
 
   return processedData[3];
   

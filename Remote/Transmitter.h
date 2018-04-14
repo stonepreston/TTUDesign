@@ -15,7 +15,7 @@ class Transmitter
     SoftwareSerial xBee;
     int data[4] = {0, 0, 0, 0};
     void debugData();
-    byte createCheckSum();
+    int createCheckSum();
     const int dataSize = 4;
     
 };

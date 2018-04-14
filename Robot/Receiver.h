@@ -9,10 +9,10 @@ class Receiver
   public:
     Receiver();
     void processData();
-    byte getLeftSpeed();
-    byte getRightSpeed();
-    byte getSelect();
-    byte getCalibration();
+    int getLeftSpeed();
+    int getRightSpeed();
+    int getSelect();
+    int getCalibration();
     void setCurrentTime(unsigned long timeInMillis);
     void setTimeOfLastGoodPacket(unsigned long timeInMillis);
     unsigned long getTimeOfLastGoodPacket();
@@ -22,8 +22,8 @@ class Receiver
     SoftwareSerial xBee;
 
     // Data
-    byte processedData[4] = {0, 0, 0, 0};
-    byte checkSumByte = 0;
+    int processedData[4] = {0, 0, 0, 0};
+    int checkSum = 0;
     const int dataSize = 4;
     
     // Flags
