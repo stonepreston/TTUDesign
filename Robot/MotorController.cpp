@@ -25,11 +25,10 @@ void MotorController::drive() {
     // Left stick is neutral
     leftMotor->run(RELEASE);
     
-  } else if(leftSpeed < leftNeutral - neutralBump) {
+  } else if(leftSpeed < leftNeutral + neutralBump) {
 
     // Reverse
-    int leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
-    leftMotor->setSpeed(leftReverseSpeed); 
+    leftMotor->setSpeed(255); 
     leftMotor->run(BACKWARD);
     
     
@@ -37,9 +36,8 @@ void MotorController::drive() {
   } else {
 
     // Forward
-    leftMotor->setSpeed(leftSpeed); 
+    leftMotor->setSpeed(255); 
     leftMotor->run(FORWARD);
-    
     
   }
 
@@ -49,20 +47,19 @@ void MotorController::drive() {
     // Right stick is neutral
     rightMotor->run(RELEASE);
     
-  } else if(rightSpeed < rightNeutral - neutralBump) {
+  } else if(rightSpeed < rightNeutral + neutralBump) {
 
     // Reverse
-    int rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
-    rightMotor->setSpeed(rightReverseSpeed); 
+    rightMotor->setSpeed(255); 
     rightMotor->run(BACKWARD);
-   
+    
+    
     
   } else {
 
     // Forward
-    rightMotor->setSpeed(rightSpeed); 
+    rightMotor->setSpeed(255); 
     rightMotor->run(FORWARD);
-    
     
   }
 
