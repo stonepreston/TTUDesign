@@ -66,7 +66,19 @@ void Receiver::processData() {
         if(inputBufferTemp == 0x41) { 
           
           aFound = true; 
-          usaFound = true;
+
+          if (uFound == true && sFound == true && aFound == true) {
+
+            usaFound = true;
+            
+          } else {
+
+            usaFound = false;
+            
+          }
+
+        
+          
           
         } 
         else { 
@@ -92,17 +104,6 @@ void Receiver::processData() {
         byte tempSelect = xBee.read();
         byte tempCalibrate = xBee.read();
         byte tempCheckSum = xBee.read();
-
-        Serial.print("Left Byte: ");
-        Serial.println(tempLeft);
-        Serial.print("Right Byte: ");
-        Serial.println(tempRight);
-        Serial.print("Select Byte: ");
-        Serial.println(tempSelect);
-        Serial.print("Calibrate Byte: ");
-        Serial.println(tempCalibrate);
-        Serial.print("CheckSumByte: ");
-        Serial.println(tempCheckSum);
 
         // Clear flags
         usaFound = false;
@@ -131,6 +132,7 @@ void Receiver::processData() {
         processedData[1] = tempRight;
         processedData[2] = tempSelect;
         processedData[3] = tempCalibrate;
+        checkSumByte = tempCheckSum;
 
 
         // We found a good packet, so set current time
@@ -139,7 +141,7 @@ void Receiver::processData() {
         
 
         // Output data to serial
-        //debugData();
+        debugData();
         
      }
     
