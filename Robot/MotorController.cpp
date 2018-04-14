@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include <Adafruit_MotorShield.h>
+#include <Servo.h>
 #include "MotorController.h"
 
 // Constructor
