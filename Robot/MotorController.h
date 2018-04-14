@@ -16,6 +16,7 @@ class MotorController
     Adafruit_DCMotor *leftMotor;
     Adafruit_DCMotor *rightMotor;
     
+    
     void initializeMotors();
     void drive();
     void stopMotors();
@@ -33,7 +34,8 @@ class MotorController
     
   private:
   
-    
+    // Servo
+    Servo shootingServo; 
 
     // Neutral stick positioning
     int leftNeutral = 124; // First guess without calibration
