@@ -25,9 +25,9 @@ void Transmitter::debugData() {
   Serial.println("S");
   Serial.println("A");
   Serial.print("Left: ");
-  Serial.println(byte(data[0]));
+  Serial.println(data[0]);
   Serial.print("Right: ");
-  Serial.println(byte(data[1]));
+  Serial.println(data[1]);
   Serial.print("Select: ");
   Serial.println(byte(data[2]));
   Serial.print("Calibrate: ");
@@ -45,8 +45,8 @@ void Transmitter::transmitData() {
   xBee.write("U");
   xBee.write("S");
   xBee.write("A");
-  xBee.write(byte(data[0]));
-  xBee.write(byte(data[1]));
+  xBee.write(data[0]);
+  xBee.write(data[1]);
   xBee.write(byte(data[2]));
   xBee.write(byte(data[3]));
   xBee.write(createCheckSum());

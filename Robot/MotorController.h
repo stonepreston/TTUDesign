@@ -35,8 +35,8 @@ class MotorController
     
 
     // Neutral stick positioning
-    int leftNeutral = 244; // First guess without calibration
-    int rightNeutral = 245; // First guess without calibration
+    int leftNeutral = 243; // First guess without calibration
+    int rightNeutral = 248; // First guess without calibration
     int neutralBump = 3; 
 
     // Speed Related

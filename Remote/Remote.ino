@@ -43,11 +43,10 @@ void captureData() {
   select = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
   calibrate = digitalRead(calibrateButtonPin); // will be HIGH (1) if pressed, and LOW (0) if  not pressed (pull-down)
 
-  capturedData[0] = leftVertical;
-  capturedData[1] = rightVertical;
+  capturedData[0] = map(leftVertical, 0, 1023, 0, 255);
+  capturedData[1] = map(rightVertical, 0, 1023, 0, 255);
   capturedData[2] = select;
   capturedData[3] = calibrate;
-
   transmitter.setData(capturedData);
   
 }
