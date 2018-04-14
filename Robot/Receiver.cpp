@@ -70,7 +70,7 @@ void Receiver::processData() {
       // We found a good packet, so set current time
       timeOfLastGoodPacket = currentTime;
 
-      debugData();
+      //debugData();
   
     } 
   } 
