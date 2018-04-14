@@ -51,10 +51,6 @@ class MotorController
     // Select (shoot button)
     // 1 = off, 0 = on (internal pull up resistor)
     int select = 1;
-
-
-
-    
     
 };
 

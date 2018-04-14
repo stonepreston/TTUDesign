@@ -5,12 +5,7 @@
 // Constructor
 MotorController::MotorController() : AFMS() {
 
-  // Serial monitor is already started in Robot setup, no need to begin serial here
 
-  
-  
-  
-  
 }
 
 void MotorController::initializeMotors() {
