@@ -75,8 +75,8 @@ void MotorController::shoot() {
   
     Serial.println("shooting");
     
-    shootingServo.write(120);
-    delay(50);
+    shootingServo.write(90);
+    delay(90);
     shootingServo.write(0);
     
     
