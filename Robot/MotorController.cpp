@@ -83,6 +83,26 @@ void MotorController::shoot() {
   }
 }
 
+
+void MotorController::toggleGate() {
+
+  if (select == 0) {
+  
+    if (gateClosed == true) {
+
+      shootingServo.write(0);
+      gateClosed = false;
+    } else {
+
+      shootingServo.write(90);
+      gateClosed = true;
+    }
+    
+    
+  }
+}
+
+
 void MotorController::stopMotors() {
 
   rightMotor->run(RELEASE);

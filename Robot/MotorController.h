@@ -20,6 +20,7 @@ class MotorController
     void drive();
     void stopMotors();
     void shoot();
+    void toggleGate();
 
     // Setters
     // Receiver data is in bytes
@@ -53,6 +54,10 @@ class MotorController
     // Select (shoot button)
     // 1 = off, 0 = on (internal pull up resistor)
     int select = 1;
+
+    // Gate
+    bool gateClosed = false;
+    
     
 };
 
