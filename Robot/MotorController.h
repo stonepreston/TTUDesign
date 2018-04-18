@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include <Adafruit_MotorShield.h>
+#include <Servo.h>
 
 class MotorController
 {
@@ -34,7 +35,8 @@ class MotorController
     
   private:
   
-    
+    Servo shootingServo; 
+    Servo gateServo;
 
     // Neutral stick positioning
     int leftNeutral = 124; // First guess without calibration
@@ -52,6 +54,7 @@ class MotorController
     // Gate (right trigger)
     // 1 = off, 0 = on (internal pull up resistor)
     int gateState = 0;
+    bool gateClosed = true;
 
     
 };
