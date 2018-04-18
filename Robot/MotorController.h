@@ -19,6 +19,8 @@ class MotorController
     void drive();
     void stopMotors();
     void shoot();
+    void toggleGate();
+    void calibrate();
 
     // Setters
     // Receiver data is in bytes
@@ -27,7 +29,7 @@ class MotorController
     void setShoot(byte shoot);
     void setGate(byte gate);
 
-    void calibrate();
+    
     
     
   private:

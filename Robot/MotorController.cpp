@@ -77,7 +77,21 @@ void MotorController::drive() {
 
 void MotorController::shoot() {
 
+  // Check if only the shoot trigger is being pressed
+  if (gateState == 0 && shootState == 0) {
+
+    Serial.println("shots fired");
+  }
   
+}
+
+void MotorController::toggleGate() {
+
+  // Check if only the gate trigger is being pressed
+  if (gateState == 1 && shootState == 1) {
+
+    Serial.println("toggle gate");
+  }
 }
 
 void MotorController::stopMotors() {
