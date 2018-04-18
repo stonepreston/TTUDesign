@@ -38,8 +38,8 @@ class MotorController
     Servo gateServo;
 
     // Neutral stick positioning
-    int leftNeutral = 124; // First guess without calibration
-    int rightNeutral = 124; // First guess without calibration
+    int leftNeutral = 243; // First guess without calibration
+    int rightNeutral = 248; // First guess without calibration
     int neutralBump = 3; 
 
     // Speed Related

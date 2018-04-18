@@ -29,12 +29,16 @@ void MotorController::drive() {
     leftMotor->run(RELEASE);
     // Serial.println("Left Neutral");
     
-  } else if(leftSpeed < leftNeutral - neutralBump) {
+  } else if(leftSpeed < leftNeutral + neutralBump) {
 
     // Reverse
+<<<<<<< HEAD
     // Map reverse values
     int leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
     leftMotor->setSpeed(leftReverseSpeed); 
+=======
+    leftMotor->setSpeed(255); 
+>>>>>>> parent of 85f0c55... fix response time issues
     leftMotor->run(BACKWARD);
     // Serial.println(" Left Reverse");
     
@@ -43,9 +47,12 @@ void MotorController::drive() {
   } else {
 
     // Forward
-    leftMotor->setSpeed(leftSpeed); 
+    leftMotor->setSpeed(255); 
     leftMotor->run(FORWARD);
+<<<<<<< HEAD
     // Serial.println("Left Forward");
+=======
+>>>>>>> parent of 85f0c55... fix response time issues
     
   }
 
@@ -55,12 +62,16 @@ void MotorController::drive() {
     // Right stick is neutral
     rightMotor->run(RELEASE);
     
-  } else if(rightSpeed < rightNeutral - neutralBump) {
+  } else if(rightSpeed < rightNeutral + neutralBump) {
 
     // Reverse
+<<<<<<< HEAD
     // Map reverse values
     int rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
     rightMotor->setSpeed(rightReverseSpeed); 
+=======
+    rightMotor->setSpeed(255); 
+>>>>>>> parent of 85f0c55... fix response time issues
     rightMotor->run(BACKWARD);
     
     
@@ -68,7 +79,7 @@ void MotorController::drive() {
   } else {
 
     // Forward
-    rightMotor->setSpeed(rightSpeed); 
+    rightMotor->setSpeed(255); 
     rightMotor->run(FORWARD);
     
   }
