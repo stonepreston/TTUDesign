@@ -11,8 +11,8 @@ class Receiver
     void processData();
     int getLeftSpeed();
     int getRightSpeed();
-    int getSelect();
-    int getCalibration();
+    int getLeftSelect();
+    int getRightSelect();
     void setCurrentTime(unsigned long timeInMillis);
     void setTimeOfLastGoodPacket(unsigned long timeInMillis);
     unsigned long getTimeOfLastGoodPacket();
@@ -22,7 +22,7 @@ class Receiver
     SoftwareSerial xBee;
 
     // Data
-    int processedData[4] = {0, 0, 0, 0};
+    int processedData[4] = {0, 0, 1, 1};
     int checkSum = 0;
     const int dataSize = 4;
     
@@ -37,11 +37,7 @@ class Receiver
     unsigned long timeOfLastGoodPacket = 0;
     
     void debugData();
-    
-    
-    
 
-    
 };
 
 #endif

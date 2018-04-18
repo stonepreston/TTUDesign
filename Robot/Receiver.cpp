@@ -79,9 +79,9 @@ void Receiver::debugData() {
   Serial.println(processedData[0]);
   Serial.print("Right: ");
   Serial.println(processedData[1]);
-  Serial.print("Select: ");
+  Serial.print("Left Select: ");
   Serial.println(processedData[2]);
-  Serial.print("Calibrate: ");
+  Serial.print("Right Select: ");
   Serial.println(processedData[3]);
   Serial.print("CheckSum: ");
   Serial.println(checkSum);
@@ -102,13 +102,13 @@ int Receiver::getRightSpeed() {
   
 }
 
-int Receiver::getSelect() {
+int Receiver::getLeftSelect() {
 
   return processedData[2];
   
 }
 
-int Receiver::getCalibration() {
+int Receiver::getRightSelect() {
 
   return processedData[3];
   
