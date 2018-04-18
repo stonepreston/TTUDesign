@@ -13,7 +13,7 @@ class Transmitter
     
   private:
     SoftwareSerial xBee;
-    int data[4] = {0, 0, 1, 0}; // leftStick, rightStick, leftSelect, rightSelect
+    int data[4] = {0, 0, 0, 0};
     void debugData();
     byte createCheckSum();
     const int dataSize = 4;

@@ -4,6 +4,9 @@
 
 Transmitter::Transmitter() :  xBee(2,3) {
 
+  // Serial.begin is called in Remote setup, not needed here
+  // Serial.begin(9600);
+
   xBee.begin(9600);
   
   
@@ -25,28 +28,35 @@ void Transmitter::debugData() {
   Serial.println(data[0]);
   Serial.print("Right: ");
   Serial.println(data[1]);
-  Serial.print("Left Select: ");
-  Serial.println(data[2]);
-  Serial.print("Right Select: ");
-  Serial.println(data[3]);
+  Serial.print("Select: ");
+  Serial.println(byte(data[2]));
+  Serial.print("Calibrate: ");
+  Serial.println(byte(data[3]));
   Serial.print("CheckSum: ");
   Serial.println(createCheckSum());
 }
 
 void Transmitter::transmitData() {
 
+  // Moving begin to constructor
+
+  
+  // xBee.begin(9600);
   xBee.write("U");
   xBee.write("S");
   xBee.write("A");
   xBee.write(data[0]);
   xBee.write(data[1]);
-  xBee.write(data[2]);
-  xBee.write(data[3]);
+  xBee.write(byte(data[2]));
+  xBee.write(byte(data[3]));
   xBee.write(createCheckSum());
 
   // Print debug data to console
-  //debugData();
+  debugData();
   
+  // Delay needed for consistent communication
+  // Removing delay to see if it improves performance. I think the delays are fucking with things
+  // delay(20);
 }
 
 void Transmitter::setData(int capturedData[]) {

@@ -9,25 +9,19 @@ int capturedData[4];
 const int leftStickPin = A0; // analog
 const int rightStickPin = A4; // analog
 const int leftSelectPin = 11; // digital
-const int rightSelectPin = 12; // digital
-
+const int calibrateButtonPin = 12; // digital
 
 void setup()
 {
 
   Serial.begin(9600);
   
-  // set pin modes for digital inputs
+  // make the SEL line an input
   pinMode(leftSelectPin,INPUT);
-  pinMode(rightSelectPin, INPUT);
-
-  // turn on the pull-up resistor for the SEL lines 
+  // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
   digitalWrite(leftSelectPin, HIGH);
 
-  // digitalWrite(rightSelectPin, HIGH);
-  
-
-  
+  pinMode(calibrateButtonPin,INPUT);
 }
 
 void loop()
@@ -41,20 +35,18 @@ void loop()
 
 void captureData() {
 
-  int leftVertical, rightVertical, leftSelect, rightSelect;
+  int leftVertical, rightVertical, select, calibrate;
   
   // read all values from the joystick
   leftVertical = analogRead(leftStickPin); // will be 0-1023
   rightVertical = analogRead(rightStickPin); // will be 0-1023
-  leftSelect = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
-  rightSelect = digitalRead(rightSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
-  
+  select = digitalRead(leftSelectPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
+  calibrate = digitalRead(calibrateButtonPin); // will be HIGH (1) if pressed, and LOW (0) if  not pressed (pull-down)
 
-  // Map left and right analog sticks to 0-255 range
   capturedData[0] = map(leftVertical, 0, 1023, 0, 255);
   capturedData[1] = map(rightVertical, 0, 1023, 0, 255);
-  capturedData[2] = leftSelect;
-  capturedData[3] = rightSelect;
+  capturedData[2] = select;
+  capturedData[3] = calibrate;
   transmitter.setData(capturedData);
   
 }
