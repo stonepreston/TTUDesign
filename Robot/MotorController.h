@@ -20,7 +20,6 @@ class MotorController
     void drive();
     void stopMotors();
     void shoot();
-    void toggleGate();
 
     // Setters
     void setLeftSpeed(int leftSpeed);
@@ -53,11 +52,15 @@ class MotorController
 
     // Right Select (gate button)
     // 1 = off, 0 = on (internal pull up resistor)
+<<<<<<< HEAD
     int rightSelect = 1;
 
     // Gate state
     bool gateClosed = false;
     
+=======
+    int select = 1;
+>>>>>>> parent of cc2a62b... add gate toggle
     
 };
 

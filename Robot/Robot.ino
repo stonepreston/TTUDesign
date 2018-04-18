@@ -35,10 +35,15 @@ void loop() {
   motorController.calibrate();
 
   motorController.drive();
+<<<<<<< HEAD
   
   // motorController.shoot();
   
   // motorController.toggleGate();
+=======
+  motorController.shoot();
+
+>>>>>>> parent of cc2a62b... add gate toggle
 
   // Check for timeout
   timeout();

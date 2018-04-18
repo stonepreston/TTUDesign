@@ -114,6 +114,7 @@ void MotorController::shoot() {
   }
 }
 
+<<<<<<< HEAD
 
 void MotorController::toggleGate() {
 
@@ -136,6 +137,8 @@ void MotorController::toggleGate() {
 }
 
 
+=======
+>>>>>>> parent of cc2a62b... add gate toggle
 void MotorController::stopMotors() {
 
   rightMotor->run(RELEASE);
