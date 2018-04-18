@@ -17,7 +17,7 @@ void MotorController::initializeMotors() {
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
   shootingServo.attach(32);
-  shootingServo.attach(31);
+  gateServo.attach(31);
 }
 
 void MotorController::drive() {
