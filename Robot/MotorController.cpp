@@ -32,7 +32,7 @@ void MotorController::drive() {
 
     // Reverse
     // Map reverse values
-    leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
+    int leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
     leftMotor->setSpeed(leftReverseSpeed); 
     leftMotor->run(BACKWARD);
     
@@ -56,7 +56,7 @@ void MotorController::drive() {
 
     // Reverse
     // Map reverse values
-    rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
+    int rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
     rightMotor->setSpeed(rightReverseSpeed); 
     rightMotor->run(BACKWARD);
     
