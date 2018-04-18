@@ -17,6 +17,7 @@ void MotorController::initializeMotors() {
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
   shootingServo.attach(32);
+  shootingServo.attach(31);
 }
 
 void MotorController::drive() {
@@ -27,10 +28,12 @@ void MotorController::drive() {
     // Left stick is neutral
     leftMotor->run(RELEASE);
     
-  } else if(leftSpeed < leftNeutral + neutralBump) {
+  } else if(leftSpeed < leftNeutral - neutralBump) {
 
     // Reverse
-    leftMotor->setSpeed(255); 
+    // Map reverse values
+    leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
+    leftMotor->setSpeed(leftReverseSpeed); 
     leftMotor->run(BACKWARD);
     
     
@@ -38,7 +41,7 @@ void MotorController::drive() {
   } else {
 
     // Forward
-    leftMotor->setSpeed(255); 
+    leftMotor->setSpeed(leftSpeed); 
     leftMotor->run(FORWARD);
     
   }
@@ -49,10 +52,12 @@ void MotorController::drive() {
     // Right stick is neutral
     rightMotor->run(RELEASE);
     
-  } else if(rightSpeed < rightNeutral + neutralBump) {
+  } else if(rightSpeed < rightNeutral - neutralBump) {
 
     // Reverse
-    rightMotor->setSpeed(255); 
+    // Map reverse values
+    rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
+    rightMotor->setSpeed(rightReverseSpeed); 
     rightMotor->run(BACKWARD);
     
     
@@ -60,7 +65,7 @@ void MotorController::drive() {
   } else {
 
     // Forward
-    rightMotor->setSpeed(255); 
+    rightMotor->setSpeed(rightSpeed); 
     rightMotor->run(FORWARD);
     
   }
@@ -93,11 +98,11 @@ void MotorController::toggleGate() {
     
     if (gateClosed == true) {
 
-      shootingServo.write(0);
+      gateServo.write(0);
       gateClosed = false;
     } else {
 
-      shootingServo.write(90);
+      gateServo.write(90);
       gateClosed = true;
     }
     
