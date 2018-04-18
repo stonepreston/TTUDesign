@@ -45,7 +45,7 @@ void Transmitter::transmitData() {
   xBee.write(createCheckSum());
 
   // Print debug data to console
-  debugData();
+  // debugData();
   
 }
 
