@@ -28,9 +28,9 @@ void Transmitter::debugData() {
   Serial.println(data[0]);
   Serial.print("Right: ");
   Serial.println(data[1]);
-  Serial.print("Select: ");
+  Serial.print("Left Trigger: ");
   Serial.println(byte(data[2]));
-  Serial.print("Calibrate: ");
+  Serial.print("Right Trigger: ");
   Serial.println(byte(data[3]));
   Serial.print("CheckSum: ");
   Serial.println(createCheckSum());
