@@ -9,6 +9,7 @@ int capturedData[4];
 const int leftStickPin = A0; // analog
 const int rightStickPin = A4; // analog
 const int leftSelectPin = 11; // digital
+const int rightSelectPin = 13; // digital
 const int calibrateButtonPin = 12; // digital
 
 void setup()
@@ -16,12 +17,15 @@ void setup()
 
   Serial.begin(9600);
   
-  // make the SEL line an input
+  // set pin modes
   pinMode(leftSelectPin,INPUT);
+  pinMode(calibrateButtonPin,INPUT);
+  pinMode(rightSelectPin, INPUT);
+  
   // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
   digitalWrite(leftSelectPin, HIGH);
 
-  pinMode(calibrateButtonPin,INPUT);
+  
 }
 
 void loop()
