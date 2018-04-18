@@ -33,9 +33,13 @@ void MotorController::drive() {
 
     // Reverse
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Map reverse values
     int leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
     leftMotor->setSpeed(leftReverseSpeed); 
+=======
+    leftMotor->setSpeed(255); 
+>>>>>>> parent of 85f0c55... fix response time issues
 =======
     leftMotor->setSpeed(255); 
 >>>>>>> parent of 85f0c55... fix response time issues
@@ -50,7 +54,10 @@ void MotorController::drive() {
     leftMotor->setSpeed(255); 
     leftMotor->run(FORWARD);
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Serial.println("Left Forward");
+=======
+>>>>>>> parent of 85f0c55... fix response time issues
 =======
 >>>>>>> parent of 85f0c55... fix response time issues
     
@@ -66,9 +73,13 @@ void MotorController::drive() {
 
     // Reverse
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Map reverse values
     int rightReverseSpeed = map(rightSpeed, 0, 255, 255, 0);
     rightMotor->setSpeed(rightReverseSpeed); 
+=======
+    rightMotor->setSpeed(255); 
+>>>>>>> parent of 85f0c55... fix response time issues
 =======
     rightMotor->setSpeed(255); 
 >>>>>>> parent of 85f0c55... fix response time issues
