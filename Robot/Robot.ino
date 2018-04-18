@@ -29,16 +29,15 @@ void loop() {
   // Set motor controller variables
   motorController.setLeftSpeed(receiver.getLeftSpeed());
   motorController.setRightSpeed(receiver.getRightSpeed());
-  motorController.setLeftSelect(receiver.getLeftSelect());
-  motorController.setRightSelect(receiver.getRightSelect());
+  motorController.setShoot(receiver.getLeftTrigger());
+  motorController.setGate(receiver.getRightTrigger());
 
+  // Calibrate (if necessary)
   motorController.calibrate();
 
   motorController.drive();
-  
-  // motorController.shoot();
-  
-  // motorController.toggleGate();
+
+
 
   // Check for timeout
   timeout();
@@ -51,7 +50,7 @@ void timeout() {
   if (receiver.getCurrentTime() > (receiver.getTimeOfLastGoodPacket() + 1000)) {
 
     Serial.println("timeout");
- 
+    // Stop motors here
     motorController.stopMotors();
     
     receiver.setTimeOfLastGoodPacket(receiver.getCurrentTime());

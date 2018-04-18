@@ -6,6 +6,11 @@
 // Constructor
 Receiver::Receiver() :  xBee(13,3) {
 
+  // Serial monitor is already started in main program, no need to begin serial here
+  
+
+  
+  
 }
 
 void Receiver::processData() {
@@ -36,15 +41,15 @@ void Receiver::processData() {
       else { uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
 
-    if (usaFound && (xBee.available()  > 4 )) {
+    if (usaFound && (xBee.available()  > 3 )) {
       
-      // store data
+      // store bytes into the appropriate variables
       
       processedData[0] = xBee.read();
       processedData[1] = xBee.read();
       processedData[2] = xBee.read();
       processedData[3] = xBee.read();
-      checkSum = xBee.read();
+      checkSumByte = xBee.read();
       
       // Clear flags
       usaFound = false;
@@ -53,66 +58,64 @@ void Receiver::processData() {
       aFound = false;
       
       // Calculate our checksum
-      chksumTest = byte(processedData[0] + processedData[1] + processedData[2] + processedData[3]);
+      chksumTest = processedData[0] + processedData[1] + processedData[2] + processedData[3];
       
       // Compare our calculated checksum to the expected
-      if (chksumTest != checkSum) {  
+      if (chksumTest != checkSumByte) {  
 
         Serial.println("Checksum failed!");
-//        Serial.print("Received: ");
-//        Serial.println(checkSum);
-//        Serial.print("Calculated: ");
-//        Serial.println(chksumTest);
         return; 
       }
       
       // We found a good packet, so set current time
       timeOfLastGoodPacket = currentTime;
 
-      debugData();
+      //debugData();
   
     } 
   } 
+
+
   
 }
 
 void Receiver::debugData() {
   
   // Output data to serial
-  Serial.print("Left: ");
+  Serial.print("Left Byte: ");
   Serial.println(processedData[0]);
-  Serial.print("Right: ");
+  Serial.print("Right Byte: ");
   Serial.println(processedData[1]);
-  Serial.print("Left Select: ");
+  Serial.print("Left Trigger: ");
   Serial.println(processedData[2]);
-  Serial.print("Right Select: ");
+  Serial.print("Right Trigger: ");
   Serial.println(processedData[3]);
-  Serial.print("CheckSum: ");
-  Serial.println(checkSum);
+  Serial.print("CheckSumByte: ");
+  Serial.println(checkSumByte);
 
   
 }
 
-int Receiver::getLeftSpeed() {
+byte Receiver::getLeftSpeed() {
 
   return processedData[0];
   
 }
 
-int Receiver::getRightSpeed() {
+byte Receiver::getRightSpeed() {
 
   return processedData[1];
 
   
 }
 
-int Receiver::getLeftSelect() {
+byte Receiver::getLeftTrigger() {
 
   return processedData[2];
   
 }
 
-int Receiver::getRightSelect() {
+byte Receiver::getRightTrigger() {
 
   return processedData[3];
   
