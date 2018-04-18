@@ -9,7 +9,7 @@ int capturedData[4];
 const int leftStickPin = A0; // analog
 const int rightStickPin = A4; // analog
 const int leftSelectPin = 11; // digital
-const int rightSelectPin = 13; // digital
+const int rightSelectPin = 12; // digital
 
 
 void setup()
@@ -23,7 +23,8 @@ void setup()
 
   // turn on the pull-up resistor for the SEL lines 
   digitalWrite(leftSelectPin, HIGH);
-  digitalWrite(rightSelectPin, HIGH);
+
+  // digitalWrite(rightSelectPin, HIGH);
   
 
   

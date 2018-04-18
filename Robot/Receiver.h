@@ -22,8 +22,8 @@ class Receiver
     SoftwareSerial xBee;
 
     // Data
-    int processedData[4] = {0, 0, 1, 1};
-    int checkSum = 0;
+    int processedData[4] = {0, 0, 1, 0};
+    byte checkSum = 0;
     const int dataSize = 4;
     
     // Flags

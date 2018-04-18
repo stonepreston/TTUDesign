@@ -27,6 +27,7 @@ void MotorController::drive() {
 
     // Left stick is neutral
     leftMotor->run(RELEASE);
+    // Serial.println("Left Neutral");
     
   } else if(leftSpeed < leftNeutral - neutralBump) {
 
@@ -35,6 +36,7 @@ void MotorController::drive() {
     int leftReverseSpeed = map(leftSpeed, 0, 255, 255, 0);
     leftMotor->setSpeed(leftReverseSpeed); 
     leftMotor->run(BACKWARD);
+    // Serial.println(" Left Reverse");
     
     
     
@@ -43,6 +45,7 @@ void MotorController::drive() {
     // Forward
     leftMotor->setSpeed(leftSpeed); 
     leftMotor->run(FORWARD);
+    // Serial.println("Left Forward");
     
   }
 
@@ -121,12 +124,13 @@ void MotorController::stopMotors() {
 
 void MotorController::calibrate() {
 
-  if (leftSelect == 0 && rightSelect == 0) {
+  if (leftSelect == 0 && rightSelect == 1) {
 
     // Both select buttons are pressed
     // reset neutral positions
     leftNeutral = leftSpeed;
     rightNeutral = rightSpeed;
+    Serial.println("Calibrated");
     
   }
 

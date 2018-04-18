@@ -36,9 +36,9 @@ void Receiver::processData() {
       else { uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
 
-    if (usaFound && (xBee.available()  > 3 )) {
+    if (usaFound && (xBee.available()  > 4 )) {
       
-      // store bytes into the appropriate variables
+      // store data
       
       processedData[0] = xBee.read();
       processedData[1] = xBee.read();
@@ -53,19 +53,23 @@ void Receiver::processData() {
       aFound = false;
       
       // Calculate our checksum
-      chksumTest = processedData[0] + processedData[1] + processedData[2] + processedData[3];
+      chksumTest = byte(processedData[0] + processedData[1] + processedData[2] + processedData[3]);
       
       // Compare our calculated checksum to the expected
       if (chksumTest != checkSum) {  
 
         Serial.println("Checksum failed!");
+//        Serial.print("Received: ");
+//        Serial.println(checkSum);
+//        Serial.print("Calculated: ");
+//        Serial.println(chksumTest);
         return; 
       }
       
       // We found a good packet, so set current time
       timeOfLastGoodPacket = currentTime;
 
-      //debugData();
+      debugData();
   
     } 
   } 

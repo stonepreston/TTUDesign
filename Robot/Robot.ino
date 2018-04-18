@@ -36,9 +36,9 @@ void loop() {
 
   motorController.drive();
   
-  motorController.shoot();
+  // motorController.shoot();
   
-  motorController.toggleGate();
+  // motorController.toggleGate();
 
   // Check for timeout
   timeout();
