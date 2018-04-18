@@ -36,10 +36,9 @@ void loop() {
 
   motorController.drive();
   
-  // motorController.shoot();
+  motorController.shoot();
   
   motorController.toggleGate();
-
 
   // Check for timeout
   timeout();
@@ -52,7 +51,7 @@ void timeout() {
   if (receiver.getCurrentTime() > (receiver.getTimeOfLastGoodPacket() + 1000)) {
 
     Serial.println("timeout");
-    // Stop motors here
+ 
     motorController.stopMotors();
     
     receiver.setTimeOfLastGoodPacket(receiver.getCurrentTime());
