@@ -29,14 +29,15 @@ void loop() {
   // Set motor controller variables
   motorController.setLeftSpeed(receiver.getLeftSpeed());
   motorController.setRightSpeed(receiver.getRightSpeed());
-  motorController.setSelect(receiver.getSelect());
-  motorController.setCalibration(receiver.getCalibration());
+  motorController.setLeftSelect(receiver.getLeftSelect());
+  motorController.setRightSelect(receiver.getRightSelect());
 
-  // Calibrate (if necessary)
   motorController.calibrate();
 
   motorController.drive();
+  
   // motorController.shoot();
+  
   motorController.toggleGate();
 
 

@@ -23,11 +23,10 @@ class MotorController
     void toggleGate();
 
     // Setters
-    // Receiver data is in bytes
-    void setLeftSpeed(byte leftSpeed);
-    void setRightSpeed(byte rightSpeed);
-    void setSelect(byte select);
-    void setCalibration(byte calibration);
+    void setLeftSpeed(int leftSpeed);
+    void setRightSpeed(int rightSpeed);
+    void setLeftSelect(int leftSelect);
+    void setRightSelect(int rightSelect);
 
     void calibrate();
     
@@ -38,24 +37,24 @@ class MotorController
     Servo shootingServo;  
 
     // Neutral stick positioning
-    int leftNeutral = 243; // First guess without calibration
-    int rightNeutral = 248; // First guess without calibration
+    int leftNeutral = 127; // First guess without calibration
+    int rightNeutral = 127; // First guess without calibration
     int neutralBump = 3; 
 
     // Speed Related
     int leftSpeed = leftNeutral;
     int rightSpeed = rightNeutral;
 
-    // Calibration
-    // 0 = off, 1 = on (pull down resistor)
-    int calibration = 0;
 
-
-    // Select (shoot button)
+    // Left Select (shoot button)
     // 1 = off, 0 = on (internal pull up resistor)
-    int select = 1;
+    int leftSelect = 1;
 
-    // Gate
+    // Right Select (gate button)
+    // 1 = off, 0 = on (internal pull up resistor)
+    int rightSelect = 1;
+
+    // Gate state
     bool gateClosed = false;
     
     

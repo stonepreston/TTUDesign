@@ -71,8 +71,9 @@ void MotorController::drive() {
 
 void MotorController::shoot() {
 
-  if (select == 0) {
-  
+  if (leftSelect == 0 && rightSelect == 1) {
+
+    // Left select is pressed, right select is not
     Serial.println("shooting");
     
     shootingServo.write(90);
@@ -86,8 +87,10 @@ void MotorController::shoot() {
 
 void MotorController::toggleGate() {
 
-  if (select == 0) {
-  
+  if (rightSelect == 0 && leftSelect == 1) {
+
+    // Right select is pressed, left select is not
+    
     if (gateClosed == true) {
 
       shootingServo.write(0);
@@ -113,8 +116,9 @@ void MotorController::stopMotors() {
 
 void MotorController::calibrate() {
 
-  if (calibration == 1) {
-    
+  if (leftSelect == 0 && rightSelect == 0) {
+
+    // Both select buttons are pressed
     // reset neutral positions
     leftNeutral = leftSpeed;
     rightNeutral = rightSpeed;
@@ -124,27 +128,27 @@ void MotorController::calibrate() {
 }
 
 // Setters
-void MotorController::setLeftSpeed(byte leftSpeed) {
+void MotorController::setLeftSpeed(int leftSpeed) {
 
-  this->leftSpeed = int(leftSpeed);
+  this->leftSpeed = leftSpeed;
   
 }
 
-void MotorController::setRightSpeed(byte rightSpeed) {
+void MotorController::setRightSpeed(int rightSpeed) {
 
-  this->rightSpeed = int(rightSpeed);
+  this->rightSpeed = rightSpeed;
   
 }
 
-void MotorController::setSelect(byte select) {
+void MotorController::setLeftSelect(int leftSelect) {
 
-  this->select = int(select);
+  this->leftSelect = leftSelect;
   
 }
 
-void MotorController::setCalibration(byte calibration) {
+void MotorController::setRightSelect(int rightSelect) {
 
-  this->calibration = int(calibration);
+  this->rightSelect = rightSelect;
   
 }
 
