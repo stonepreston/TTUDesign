@@ -2,7 +2,7 @@
 #define Transmitter_h
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
+
 
 class Transmitter
 {
@@ -12,7 +12,7 @@ class Transmitter
     void setData(int capturedData[]);
     
   private:
-    SoftwareSerial xBee;
+    
     int data[4] = {0, 0, 1, 0};
     void debugData();
     byte createCheckSum();

@@ -6,15 +6,15 @@ Transmitter transmitter  = Transmitter();
 
 int capturedData[4];
 
-const int leftStickPin = A0; // analog
-const int rightStickPin = A4; // analog
-const int leftTriggerPin = 11; // digital
-const int rightTriggerPin = 12; // digital
+const int leftStickPin = A2; // analog
+const int rightStickPin = A1; // analog
+const int leftTriggerPin = 6; // digital
+const int rightTriggerPin = 3; // digital
 
 void setup()
 {
 
-  Serial.begin(9600);
+  SerialUSB.begin(9600);
   
   // make the SEL line an input
   pinMode(leftTriggerPin,INPUT);

@@ -1,13 +1,12 @@
 #include "Arduino.h"
-#include <SoftwareSerial.h>
 #include "Transmitter.h"
 
-Transmitter::Transmitter() :  xBee(2,3) {
+Transmitter::Transmitter()  {
 
   // Serial.begin is called in Remote setup, not needed here
   // Serial.begin(9600);
 
-  xBee.begin(9600);
+  Serial1.begin(9600);
   
   
 }
@@ -21,19 +20,19 @@ byte Transmitter::createCheckSum() {
 
 void Transmitter::debugData() {
 
-  Serial.println("U");
-  Serial.println("S");
-  Serial.println("A");
-  Serial.print("Left: ");
-  Serial.println(data[0]);
-  Serial.print("Right: ");
-  Serial.println(data[1]);
-  Serial.print("Left Trigger: ");
-  Serial.println(byte(data[2]));
-  Serial.print("Right Trigger: ");
-  Serial.println(byte(data[3]));
-  Serial.print("CheckSum: ");
-  Serial.println(createCheckSum());
+  SerialUSB.println("U");
+  SerialUSB.println("S");
+  SerialUSB.println("A");
+  SerialUSB.print("Left: ");
+  SerialUSB.println(data[0]);
+  SerialUSB.print("Right: ");
+  SerialUSB.println(data[1]);
+  SerialUSB.print("Left Trigger: ");
+  SerialUSB.println(byte(data[2]));
+  SerialUSB.print("Right Trigger: ");
+  SerialUSB.println(byte(data[3]));
+  SerialUSB.print("CheckSum: ");
+  SerialUSB.println(createCheckSum());
 }
 
 void Transmitter::transmitData() {
@@ -42,14 +41,14 @@ void Transmitter::transmitData() {
 
   
   // xBee.begin(9600);
-  xBee.write("U");
-  xBee.write("S");
-  xBee.write("A");
-  xBee.write(data[0]);
-  xBee.write(data[1]);
-  xBee.write(byte(data[2]));
-  xBee.write(byte(data[3]));
-  xBee.write(createCheckSum());
+  Serial1.write("U");
+  Serial1.write("S");
+  Serial1.write("A");
+  Serial1.write(data[0]);
+  Serial1.write(data[1]);
+  Serial1.write(byte(data[2]));
+  Serial1.write(byte(data[3]));
+  Serial1.write(createCheckSum());
 
   // Print debug data to console
   debugData();
