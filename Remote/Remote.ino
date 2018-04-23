@@ -17,15 +17,17 @@ void setup()
   SerialUSB.begin(9600);
   Serial1.begin(9600);
 
-  // Wait for serial monitor to open
+  // Wait for serial ports to open
   while (!SerialUSB);
-  
-  // make the SEL line an input
-  pinMode(leftTriggerPin,INPUT);
-  // turn on the pull-up resistor for the SEL line (see http://arduino.cc/en/Tutorial/DigitalPins)
-  digitalWrite(leftTriggerPin, HIGH);
+  while (!Serial1);
 
-  pinMode(rightTriggerPin,INPUT);
+  Serial1.print("W7001\r\n");
+
+  // Enable pullup resistor for left trigger
+  pinMode(leftTriggerPin, INPUT_PULLUP); 
+  
+  // Enable pullup resistor for right trigger
+  pinMode(rightTriggerPin, INPUT_PULLUP); 
 }
 
 void loop()

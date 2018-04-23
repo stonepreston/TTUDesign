@@ -23,9 +23,9 @@ void Transmitter::debugData() {
   SerialUSB.print("Right: ");
   SerialUSB.println(data[1]);
   SerialUSB.print("Left Trigger: ");
-  SerialUSB.println(byte(data[2]));
+  SerialUSB.println(data[2]);
   SerialUSB.print("Right Trigger: ");
-  SerialUSB.println(byte(data[3]));
+  SerialUSB.println(data[3]);
   SerialUSB.print("CheckSum: ");
   SerialUSB.println(createCheckSum());
 }
@@ -33,20 +33,25 @@ void Transmitter::debugData() {
 void Transmitter::transmitData() {
 
   Serial1.write("U");
+  
   Serial1.write("S");
+  
   Serial1.write("A");
+  
   Serial1.write(data[0]);
+  
   Serial1.write(data[1]);
-  Serial1.write(byte(data[2]));
-  Serial1.write(byte(data[3]));
+  
+  Serial1.write(data[2]);
+  
+  Serial1.write(data[3]);
+  
   Serial1.write(createCheckSum());
-
+  
+  delay(20);
   // Print debug data to console
   // debugData();
-  
-  // Delay needed for consistent communication
-  // Removing delay to see if it improves performance. I think the delays are fucking with things
-  // delay(20);
+
 }
 
 void Transmitter::setData(int capturedData[]) {

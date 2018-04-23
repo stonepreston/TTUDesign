@@ -53,7 +53,7 @@ class MotorController
 
     // Gate (right trigger)
     // 1 = off, 0 = on (internal pull up resistor)
-    int gateState = 0;
+    int gateState = 1;
     bool gateClosed = true;
 
     

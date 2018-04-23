@@ -41,7 +41,7 @@ void Receiver::processData() {
       else { uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
 
-    if (usaFound && (xBee.available()  > 3 )) {
+    if (usaFound && (xBee.available()  > 4 )) {
       
       // store bytes into the appropriate variables
       
@@ -56,9 +56,10 @@ void Receiver::processData() {
       uFound = false; 
       sFound = false; 
       aFound = false;
+
       
       // Calculate our checksum
-      chksumTest = processedData[0] + processedData[1] + processedData[2] + processedData[3];
+      chksumTest = byte(processedData[0] + processedData[1] + processedData[2] + processedData[3]);
       
       // Compare our calculated checksum to the expected
       if (chksumTest != checkSumByte) {  
@@ -66,11 +67,13 @@ void Receiver::processData() {
         Serial.println("Checksum failed!");
         return; 
       }
+
+      // debugData(); 
       
       // We found a good packet, so set current time
       timeOfLastGoodPacket = currentTime;
 
-      //debugData();
+      
   
     } 
   } 
@@ -82,9 +85,9 @@ void Receiver::processData() {
 void Receiver::debugData() {
   
   // Output data to serial
-  Serial.print("Left Byte: ");
+  Serial.print("Left Speed: ");
   Serial.println(processedData[0]);
-  Serial.print("Right Byte: ");
+  Serial.print("Right Speed: ");
   Serial.println(processedData[1]);
   Serial.print("Left Trigger: ");
   Serial.println(processedData[2]);
@@ -96,26 +99,26 @@ void Receiver::debugData() {
   
 }
 
-byte Receiver::getLeftSpeed() {
+int Receiver::getLeftSpeed() {
 
   return processedData[0];
   
 }
 
-byte Receiver::getRightSpeed() {
+int Receiver::getRightSpeed() {
 
   return processedData[1];
 
   
 }
 
-byte Receiver::getLeftTrigger() {
+int Receiver::getLeftTrigger() {
 
   return processedData[2];
   
 }
 
-byte Receiver::getRightTrigger() {
+int Receiver::getRightTrigger() {
 
   return processedData[3];
   
