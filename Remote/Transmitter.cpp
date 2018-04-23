@@ -6,7 +6,7 @@ Transmitter::Transmitter()  {
   // Serial.begin is called in Remote setup, not needed here
   // Serial.begin(9600);
 
-  Serial1.begin(9600);
+  
   
   
 }
