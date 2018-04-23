@@ -36,7 +36,7 @@ void loop() {
   motorController.calibrate();
 
   motorController.drive();
-  // motorController.toggleGate();
+  motorController.toggleGate();
   // motorController.shoot();
 
 

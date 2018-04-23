@@ -21,7 +21,9 @@ void MotorController::initializeMotors() {
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
   //shootingServo.attach(32);
-  gateServo.attach(30);
+  // gateServo.attach(9);
+  
+  
 }
 
 void MotorController::drive() {
@@ -80,7 +82,7 @@ void MotorController::drive() {
 void MotorController::shoot() {
 
   // Check if only the shoot trigger is being pressed
-  if (gateState == 0 && shootState == 0) {
+  if (gateState == 1 && shootState == 0) {
 
     shootingServo.write(90);
     delay(90);
@@ -91,21 +93,31 @@ void MotorController::shoot() {
 
 void MotorController::toggleGate() {
 
+  
   // Check if only the gate trigger is being pressed
-  if (gateState == 1 && shootState == 1) {
+  if (gateState == 0 && shootState == 1) {
+
 
     if (gateClosed == true) {
 
       gateServo.write(0);
       gateClosed = false;
+      Serial.println("Opening Gate");
       
     } else {
 
       gateServo.write(90);
+      delay(20);
       gateClosed = true;
-      
+      Serial.println("Closing Gate");
     }
+
+    delay(1000);
+
+    
   }
+
+  
 }
 
 void MotorController::stopMotors() {
@@ -118,7 +130,7 @@ void MotorController::stopMotors() {
 
 void MotorController::calibrate() {
 
-  if (gateState == 1 && shootState == 0) {
+  if (gateState == 0 && shootState == 0) {
 
     // Both left and right triggers are pressed
     
