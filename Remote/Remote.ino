@@ -14,7 +14,7 @@ const int rightTriggerPin = 3; // digital
 void setup()
 {
 
-  SerialUSB.begin(9600);
+  // SerialUSB.begin(9600);
   Serial1.begin(9600);
 
   // Wait for serial ports to open
