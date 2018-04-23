@@ -3,12 +3,7 @@
 
 Transmitter::Transmitter()  {
 
-  // Serial.begin is called in Remote setup, not needed here
-  // Serial.begin(9600);
 
-  
-  
-  
 }
 
 byte Transmitter::createCheckSum() {
@@ -37,10 +32,6 @@ void Transmitter::debugData() {
 
 void Transmitter::transmitData() {
 
-  // Moving begin to constructor
-
-  
-  // xBee.begin(9600);
   Serial1.write("U");
   Serial1.write("S");
   Serial1.write("A");
@@ -51,7 +42,7 @@ void Transmitter::transmitData() {
   Serial1.write(createCheckSum());
 
   // Print debug data to console
-  debugData();
+  // debugData();
   
   // Delay needed for consistent communication
   // Removing delay to see if it improves performance. I think the delays are fucking with things
