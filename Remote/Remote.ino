@@ -18,7 +18,7 @@ void setup()
   Serial1.begin(9600);
 
   // Wait for serial ports to open
-  while (!SerialUSB);
+  // while (!SerialUSB);
   while (!Serial1);
 
   Serial1.print("W7001\r\n");
