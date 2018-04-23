@@ -13,7 +13,7 @@ class Transmitter
     
   private:
     
-    int data[4] = {0, 0, 1, 0};
+    int data[4] = {0, 0, 1, 1};
     void debugData();
     byte createCheckSum();
     const int dataSize = 4;
