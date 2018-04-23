@@ -20,7 +20,7 @@ void MotorController::initializeMotors() {
   AFMS.begin();
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
-  //shootingServo.attach(32);
+  // shootingServo.attach(32);
   // gateServo.attach(9);
   
   
@@ -95,27 +95,29 @@ void MotorController::toggleGate() {
 
   
   // Check if only the gate trigger is being pressed
+  
   if (gateState == 0 && shootState == 1) {
 
+    Serial.println("gate pressed");
 
-    if (gateClosed == true) {
 
-      gateServo.write(0);
-      gateClosed = false;
-      Serial.println("Opening Gate");
-      
-    } else {
-
-      gateServo.write(90);
-      delay(20);
-      gateClosed = true;
-      Serial.println("Closing Gate");
-    }
-
-    delay(1000);
+//    if (gateClosed == true) {
+//
+//      // gateServo.write(0);
+//      gateClosed = false;
+//      Serial.println("Opening Gate");
+//      
+//    } else {
+//
+//      // gateServo.write(90);
+//      gateClosed = true;
+//      Serial.println("Closing Gate");
+//    }
+//
+//    delay(500);
 
     
-  }
+ }
 
   
 }
@@ -164,6 +166,8 @@ void MotorController::setShoot(byte shoot) {
 void MotorController::setGate(byte gate) {
 
   this->gateState = int(gate);
+
+  this->toggleGate();
   
 }
 
