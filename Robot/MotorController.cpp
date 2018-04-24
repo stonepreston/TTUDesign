@@ -22,6 +22,9 @@ void MotorController::initializeMotors() {
   rightMotor = AFMS.getMotor(2);
   shootingServo.attach(32);
   gateServo.attach(30);
+
+  shootingServo.write(0);
+  gateServo.write(90);
   
   
 }
@@ -89,11 +92,20 @@ void MotorController::shoot() {
     // Shoot only if long enough time has passed
     if (currentTime - lastShootTime > 500) {
 
+      if (gateClosed == true) {
+
+        gateServo.write(90);
+        gateClosed = false;
+        delay(200);
+      }
+
       shootingServo.write(120);
-      delay(100);
+
+      delay(300);
       shootingServo.write(0);
      
-      lastToggleTime = currentTime;
+      lastShootTime = currentTime;
+      Serial.println("shot fired");
       
     }
   }
@@ -110,19 +122,19 @@ void MotorController::toggleGate() {
     long int currentTime = millis();
     
     // Toggle only if long enough time has passed
-    if (currentTime - lastToggleTime > 500) {
+    if (currentTime - lastToggleTime > 1000) {
 
       
       if (gateClosed == true) {
 
         
-        gateServo.write(0);
+        gateServo.write(90);
         gateClosed = false;
         Serial.println("Opening Gate");
       
       } else {
   
-        gateServo.write(90);
+        gateServo.write(0);
         gateClosed = true;
         Serial.println("Closing Gate");
       }
