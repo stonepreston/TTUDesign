@@ -35,7 +35,7 @@ class MotorController
     
   private:
   
-    Servo shootingServo; 
+    // Servo shootingServo; 
     Servo gateServo;
 
     // Neutral stick positioning
@@ -55,6 +55,7 @@ class MotorController
     // 1 = off, 0 = on (internal pull up resistor)
     int gateState = 1;
     bool gateClosed = false;
+    long int lastToggleTime = 0;
 
     
 };

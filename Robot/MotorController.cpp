@@ -21,7 +21,7 @@ void MotorController::initializeMotors() {
   leftMotor = AFMS.getMotor(1);
   rightMotor = AFMS.getMotor(2);
   // shootingServo.attach(32);
-  // gateServo.attach(9);
+  gateServo.attach(30);
   
   
 }
@@ -84,9 +84,9 @@ void MotorController::shoot() {
   // Check if only the shoot trigger is being pressed
   if (gateState == 1 && shootState == 0) {
 
-    shootingServo.write(90);
+    // shootingServo.write(90);
     delay(90);
-    shootingServo.write(0);
+    // shootingServo.write(0);
   }
   
 }
@@ -98,23 +98,26 @@ void MotorController::toggleGate() {
   
   if (gateState == 0 && shootState == 1) {
 
-    Serial.println("gate pressed");
+    long int currentTime = millis();
+    
+    // Toggle only if long enough time has passed
+    if (millis() - lastToggleTime > 200) {
 
+      if (gateClosed == true) {
 
-//    if (gateClosed == true) {
-//
-//      // gateServo.write(0);
-//      gateClosed = false;
-//      Serial.println("Opening Gate");
-//      
-//    } else {
-//
-//      // gateServo.write(90);
-//      gateClosed = true;
-//      Serial.println("Closing Gate");
-//    }
-//
-//    delay(500);
+      gateServo.write(0);
+      gateClosed = false;
+      Serial.println("Opening Gate");
+      
+      } else {
+  
+        gateServo.write(90);
+        gateClosed = true;
+        Serial.println("Closing Gate");
+      }
+      
+      lastToggleTime = currentTime;
+    }
 
     
  }
@@ -166,8 +169,6 @@ void MotorController::setShoot(byte shoot) {
 void MotorController::setGate(byte gate) {
 
   this->gateState = int(gate);
-
-  this->toggleGate();
   
 }
 

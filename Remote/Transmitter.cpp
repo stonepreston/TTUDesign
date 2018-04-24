@@ -50,7 +50,7 @@ void Transmitter::transmitData() {
   
   delay(20);
   // Print debug data to console
-  // debugData();
+  debugData();
 
 }
 

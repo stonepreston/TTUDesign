@@ -1,8 +1,13 @@
 #include "Arduino.h"
 #include "Transmitter.h"
+#include "Bounce2.h"
 
 // Create Transmitter object
 Transmitter transmitter  = Transmitter();
+
+// Create Bounce objects
+Bounce leftTriggerDebouncer = Bounce(); 
+Bounce rightTriggerDebouncer = Bounce(); 
 
 int capturedData[4];
 
@@ -28,6 +33,12 @@ void setup()
   
   // Enable pullup resistor for right trigger
   pinMode(rightTriggerPin, INPUT_PULLUP); 
+
+  leftTriggerDebouncer.attach(leftTriggerPin);
+  leftTriggerDebouncer.interval(5); 
+
+  rightTriggerDebouncer.attach(rightTriggerPin);
+  rightTriggerDebouncer.interval(5); 
 }
 
 void loop()
@@ -46,8 +57,13 @@ void captureData() {
   // read all values from the joystick
   leftVertical = analogRead(leftStickPin); // will be 0-1023
   rightVertical = analogRead(rightStickPin); // will be 0-1023
-  leftTrigger = digitalRead(leftTriggerPin); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
-  rightTrigger = digitalRead(rightTriggerPin); // will be HIGH (1) if pressed, and LOW (0) if  not pressed (pull-down)
+
+  // Update bounce objects
+  leftTriggerDebouncer.update();
+  rightTriggerDebouncer.update();
+  
+  leftTrigger = leftTriggerDebouncer.read(); // will be HIGH (1) if not pressed, and LOW (0) if pressed (pull-up)
+  rightTrigger = rightTriggerDebouncer.read(); // will be HIGH (1) if pressed, and LOW (0) if  not pressed (pull-down)
 
   capturedData[0] = map(leftVertical, 0, 1023, 0, 255);
   capturedData[1] = map(rightVertical, 0, 1023, 0, 255);

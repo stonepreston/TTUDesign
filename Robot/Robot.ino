@@ -3,11 +3,13 @@
 #include "Receiver.h"
 #include "MotorController.h"
 
+
 // Create Receiver object
 Receiver receiver  = Receiver();
 
 // Create MotorController object
 MotorController motorController = MotorController();
+
 
 void setup()
 {
@@ -15,6 +17,7 @@ void setup()
   Serial.begin(9600);
   
   motorController.initializeMotors();
+
   
 }
 
@@ -36,12 +39,13 @@ void loop() {
   motorController.calibrate();
 
   motorController.drive();
-  // motorController.toggleGate();
+  motorController.toggleGate();
   // motorController.shoot();
 
 
   // Check for timeout
   timeout();
+
 
 }
 
