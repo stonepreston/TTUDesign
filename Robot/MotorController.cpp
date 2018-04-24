@@ -103,11 +103,13 @@ void MotorController::toggleGate() {
     // Toggle only if long enough time has passed
     if (millis() - lastToggleTime > 200) {
 
+      
       if (gateClosed == true) {
 
-      gateServo.write(0);
-      gateClosed = false;
-      Serial.println("Opening Gate");
+        
+        gateServo.write(0);
+        gateClosed = false;
+        Serial.println("Opening Gate");
       
       } else {
   
@@ -117,6 +119,7 @@ void MotorController::toggleGate() {
       }
       
       lastToggleTime = currentTime;
+      
     }
 
     
