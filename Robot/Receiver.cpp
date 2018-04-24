@@ -1,10 +1,9 @@
 #include "Arduino.h"
-#include <SoftwareSerial.h>
 #include "Receiver.h"
 
 
 // Constructor
-Receiver::Receiver() :  xBee(13,3) {
+Receiver::Receiver()  {
 
   // Serial monitor is already started in main program, no need to begin serial here
   
@@ -18,38 +17,38 @@ void Receiver::processData() {
   unsigned char inputBufferTemp;
   byte chksumTest;
 
-  xBee.begin(9600);
+  Serial1.begin(9600);
 
   // Wait for xbee
-  if (xBee.available() > 0) {
+  if (Serial1.available() > 0) {
 
     if (!uFound) {
-      inputBufferTemp = xBee.read();
+      inputBufferTemp = Serial1.read();
       if(inputBufferTemp == 0x55) { uFound = true; } 
       else { uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
     
     if (!sFound) {
-      inputBufferTemp = xBee.read();
+      inputBufferTemp = Serial1.read();
       if(inputBufferTemp == 0x53) { sFound = true; } 
       else {  uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
     
     if (!aFound) {
-      inputBufferTemp = xBee.read();
+      inputBufferTemp = Serial1.read();
       if(inputBufferTemp == 0x41) { aFound = true; usaFound = true;} 
       else { uFound = false; sFound = false; aFound = false; usaFound = false; }
     }
 
-    if (usaFound && (xBee.available()  > 4 )) {
+    if (usaFound && (Serial1.available()  > 4 )) {
       
       // store bytes into the appropriate variables
       
-      processedData[0] = xBee.read();
-      processedData[1] = xBee.read();
-      processedData[2] = xBee.read();
-      processedData[3] = xBee.read();
-      checkSumByte = xBee.read();
+      processedData[0] = Serial1.read();
+      processedData[1] = Serial1.read();
+      processedData[2] = Serial1.read();
+      processedData[3] = Serial1.read();
+      checkSumByte = Serial1.read();
       
       // Clear flags
       usaFound = false;

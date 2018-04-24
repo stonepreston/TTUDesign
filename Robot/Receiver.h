@@ -2,7 +2,7 @@
 #define Receiver_h
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
+
 
 class Receiver
 {
@@ -19,8 +19,7 @@ class Receiver
     unsigned long getCurrentTime();
     
   private:
-    SoftwareSerial xBee;
-
+    
     // Data
     int processedData[4] = {0, 0, 1, 1};
     byte checkSumByte = 0;

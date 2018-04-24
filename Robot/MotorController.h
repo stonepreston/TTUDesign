@@ -35,7 +35,7 @@ class MotorController
     
   private:
   
-    // Servo shootingServo; 
+    Servo shootingServo; 
     Servo gateServo;
 
     // Neutral stick positioning
@@ -50,6 +50,7 @@ class MotorController
     // Shoot (left trigger)
     // 1 = off, 0 = on (internal pull up resistor)
     int shootState = 1;
+    long int lastShootTime = 0;
 
     // Gate (right trigger)
     // 1 = off, 0 = on (internal pull up resistor)
