@@ -18,13 +18,13 @@ void MotorController::initializeMotors() {
   // Initialize motors
   // Note: For some reason it didnt like AFMS.begin() being in the constructor, kinda strange
   AFMS.begin();
-  leftMotor = AFMS.getMotor(1);
-  rightMotor = AFMS.getMotor(2);
-  // shootingServo.attach(32);
-  // gateServo.attach(30);
+  leftMotor = AFMS.getMotor(2);
+  rightMotor = AFMS.getMotor(1);
+  shootingServo.attach(32);
+  gateServo.attach(30);
 
-  // shootingServo.write(0);
-  // gateServo.write(90);
+  shootingServo.write(0);
+  gateServo.write(90);
   
   
 }
@@ -99,7 +99,7 @@ void MotorController::shoot() {
         delay(200);
       }
 
-      shootingServo.write(120);
+      shootingServo.write(65);
 
       delay(300);
       shootingServo.write(0);
